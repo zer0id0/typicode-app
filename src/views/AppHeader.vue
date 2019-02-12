@@ -1,6 +1,6 @@
 <template>
   <div id="app-header">
-    <h3>Top 100 Cryptos</h3>
+    <h3>API Users and other stuff</h3>
     <nav id="nav">
       <div class="nav-item">
         Users: <strong>{{users.length}}</strong>
@@ -12,10 +12,10 @@
         Comments: <strong>{{comments.length}}</strong>
       </div>
     </nav>
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
+    <div id="nav">
+      <router-link to="/">User Table</router-link> |
       <router-link to="/about">About</router-link>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -24,17 +24,17 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'AppHeader',
-  created () {
-    this.$store.dispatch('loadUsers')
-    this.$store.dispatch('loadPosts')
-    this.$store.dispatch('loadComments')
-  },
   computed: {
     ...mapState([
       'users',
       'posts',
       'comments'
-    ]) }
+    ]) },
+  created () {
+    this.$store.dispatch('loadUsers')
+    this.$store.dispatch('loadPosts')
+    this.$store.dispatch('loadComments')
+  }
 }
 </script>
 

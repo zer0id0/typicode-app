@@ -5,7 +5,7 @@ import Api from '@/services/Api'
 
 Vue.use(Vuex)
 Vue.use(VueAxios, Api)
-
+// Todo will need to move into modules
 export const store = new Vuex.Store({
   state: {
     users: [],
@@ -50,6 +50,9 @@ export const store = new Vuex.Store({
   getters: {
     POSTS: state => {
       return state.posts
+    },
+    USERS: state => {
+      return state.users
     }
   }
 })

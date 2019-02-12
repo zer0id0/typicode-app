@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <CryptoTable />
+    <UsersTable />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import CryptoTable from '@/components/CryptoTable.vue'
+import UsersTable from '@/components/UsersTable.vue'
 
 export default {
   name: 'home',
   components: {
-    CryptoTable
+    UsersTable
   }
 }
 </script>

@@ -1,7 +1,6 @@
 <template>
   <div id="app-header">
     <h3>Top 100 Cryptos</h3>
-
     <nav id="nav">
       <div class="nav-item">
         Market cap:
@@ -21,8 +20,16 @@
 </template>
 
 <script>
-export default {
+import { mapState } from 'vuex'
 
+export default {
+  name: 'AppHeader',
+  created () {
+    this.$store.dispatch('loadCoins')
+  },
+  computed: mapState([
+    'coins'
+  ])
 }
 </script>
 

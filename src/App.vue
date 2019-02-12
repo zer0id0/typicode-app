@@ -7,6 +7,8 @@
 
 <script>
 import AppHeader from './views/AppHeader'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
 export default {
   name: 'app',
   components: {

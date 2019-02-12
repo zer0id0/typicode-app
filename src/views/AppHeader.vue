@@ -3,13 +3,13 @@
     <h3>Top 100 Cryptos</h3>
     <nav id="nav">
       <div class="nav-item">
-        Market cap:
+        Users: {{users.length}}
       </div>
       <div class="nav-item">
-        24h Vol cap:
+        Posts:
       </div>
       <div class="nav-item">
-        Btc Dominance:
+        Comments:
       </div>
     </nav>
     <!-- <div id="nav">
@@ -25,10 +25,10 @@ import { mapState } from 'vuex'
 export default {
   name: 'AppHeader',
   created () {
-    this.$store.dispatch('loadCoins')
+    this.$store.dispatch('loadUsers')
   },
   computed: mapState([
-    'coins'
+    'users'
   ])
 }
 </script>

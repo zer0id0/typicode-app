@@ -8,20 +8,20 @@ Vue.use(VueAxios, Api)
 
 export const store = new Vuex.Store({
   state: {
-    coins: []
+    users: []
   },
   mutations: {
-    SET_COINS (state, coins) {
-      state.coins = coins
+    SET_USERS (state, users) {
+      state.users = users
     }
   },
   actions: {
-    loadCoins ({ commit }) {
-      // Api()
-      //   .get('/listings/latest?limit=100/')
-      //   .then(r => r.data)
-      //   .then(coins => console.log(coins))
-      //   .catch(err => console.log(err))
+    loadUsers ({ commit }) {
+      Api()
+        .get('/users')
+        .then(response => response.data)
+        .then(users => commit('SET_USERS', users))
+        .catch(err => console.log(err))
     }
   }
 })

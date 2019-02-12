@@ -3,13 +3,13 @@
     <h3>Top 100 Cryptos</h3>
     <nav id="nav">
       <div class="nav-item">
-        Users: {{users.length}}
+        Users: <strong>{{users.length}}</strong>
       </div>
       <div class="nav-item">
-        Posts:
+        Posts: <strong>{{posts.length}}</strong>
       </div>
       <div class="nav-item">
-        Comments:
+        Comments: <strong>{{comments.length}}</strong>
       </div>
     </nav>
     <!-- <div id="nav">
@@ -26,10 +26,15 @@ export default {
   name: 'AppHeader',
   created () {
     this.$store.dispatch('loadUsers')
+    this.$store.dispatch('loadPosts')
+    this.$store.dispatch('loadComments')
   },
-  computed: mapState([
-    'users'
-  ])
+  computed: {
+    ...mapState([
+      'users',
+      'posts',
+      'comments'
+    ]) }
 }
 </script>
 

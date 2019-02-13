@@ -9,13 +9,12 @@
         Posts: <strong>{{posts.length}}</strong>
       </div>
       <div class="nav-item">
-        Comments: <strong>{{comments.length}}</strong>
+        <router-link to="/comments"> Comments: <strong>{{comments.length}}</strong></router-link>
       </div>
     </nav>
     <div id="nav">
       <router-link to="/">User Table</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/comments">Comments</router-link>
+      <router-link to="/about">About</router-link>
     </div>
   </div>
 </template>

@@ -53,6 +53,9 @@ export const store = new Vuex.Store({
     },
     USERS: state => {
       return state.users
+    },
+    COMMENTS: state => {
+      return state.comments
     }
   }
 })

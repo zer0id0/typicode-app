@@ -1,27 +1,25 @@
+
 <template>
-  <div>
-    <div class="container">
-      <h3>Comments</h3>
-      <table class="table tabled-striped table-hover borderWhiteAll">
-        <thead>
-          <tr>
-            <th>Post ID</th>
-            <th>Name</th>
-            <th>Body</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for=" comment in COMMENTS"
-            :key="comment.id"
-          >
-            <td>{{comment.id}}</td>
-            <td>{{comment.name}}</td>
-            <td>{{comment.email}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="text-xs-center">
+    <v-badge left>
+      <span slot="badge">6</span>
+      <v-icon
+        large
+        color="grey lighten-1"
+      >
+        shopping_cart
+      </v-icon>
+    </v-badge>
+
+    <v-badge color="red">
+      <span slot="badge">!</span>
+      <v-icon
+        large
+        color="grey"
+      >
+        mail
+      </v-icon>
+    </v-badge>
   </div>
 </template>
 

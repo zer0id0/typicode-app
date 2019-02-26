@@ -1,32 +1,22 @@
 <template>
-  <div>
-    <div class="container">
-      <table class="table tabled-striped table-hover borderWhiteAll">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for=" user in USERS"
-            :key="user.id"
-          >
-            <td>{{user.id}}</td>
-            <td>{{user.name}}</td>
-            <td>{{user.email}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <v-data-table
+    :headers="headers"
+    :items="USERS"
+    class="my-3 mx-3 elevation-1"
+  >
+    <template slot="items" slot-scope="props">
+      <tr>
+        <td class="text-xs-center">{{ props.item.id }}</td>
+        <td class="text-xs-center">{{ props.item.name }}</td>
+        <td class="text-xs-center">{{ props.item.email }}</td>
+      </tr>
+    </template>
+  </v-data-table>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-export default {
+export default {  
   name: 'UsersTable',
   computed: {
     ...mapGetters(['USERS'])
@@ -34,7 +24,32 @@ export default {
   },
   created () {
     this.$store.dispatch('loadUsers')
-  }
+  },
+  data() {
+        return {
+            headers: [
+                {
+                    text: 'ID',
+                    sortable: true,
+                    value: 'id',
+                    align: 'center'
+                },
+                {
+                    text: 'Name',
+                    sortable: true,
+                    value: 'name',
+                     align: 'center'
+                },
+                {
+                    text: 'Email',
+                    sortable: true,
+                    value: 'email',
+                    align: 'center'
+                }
+          
+                      ]
+                }
+          }
 }
 </script>
 

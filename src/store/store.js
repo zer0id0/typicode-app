@@ -38,9 +38,9 @@ export const store = new Vuex.Store({
         .then(posts => commit('SET_POSTS', posts))
         .catch(err => console.log(err))
     },
-    loadComments ({ commit }) {
+    loadComments ({ commit, payload }) {
       Api()
-        .get('/comments')
+        .get(`/comments?_limit=${payload}`)
         .then(response => response.data)
         //* you can change the name of data at second then
         .then(comments => commit('SET_COMMENTS', comments))

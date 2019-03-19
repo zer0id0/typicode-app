@@ -24,12 +24,13 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    loadUsers ({ commit }) {
-      Api()
-        .get('/users')
-        .then(response => response.data)
-        .then(users => commit('SET_USERS', users))
-        .catch(err => console.log(err))
+    async loadUsers ({ commit }) {
+      try {
+        const response = await Api().get('/users')
+        commit('SET_USERS', response.data)
+      } catch (err) {
+        console.log(err)
+      }
     },
     loadPosts ({ commit }) {
       Api()
@@ -38,13 +39,23 @@ export const store = new Vuex.Store({
         .then(posts => commit('SET_POSTS', posts))
         .catch(err => console.log(err))
     },
-    loadComments ({ commit, payload }) {
+    loadComments ({ commit, pages }) {
       Api()
-        .get(`/comments?_limit=${payload}`)
+        .get(`/comments?_limit=${pages}`)
         .then(response => response.data)
         //* you can change the name of data at second then
         .then(comments => commit('SET_COMMENTS', comments))
         .catch(err => console.log(err))
+    },
+    async filterComments ({ commit }, e) {
+      // Get selected number
+      try {
+        const limit = parseInt(e.target.options[e.target.options.selectedIndex].innerText)
+        const response = await Api().get(`https://jsonplaceholder.typicode.com/todos?_limit=${limit}`)
+        commit('SET_COMMENTS', response.data)
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
   getters: {

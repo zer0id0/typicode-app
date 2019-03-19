@@ -7,9 +7,9 @@
       <table class="table tabled-striped table-hover borderWhiteAll">
         <thead>
           <tr>
-            <th>Post ID</th>
-            <th>Name</th>
-            <th>Body</th>
+            <th>Comment ID</th>
+            <th>User ID</th>
+            <th>Title</th>
           </tr>
         </thead>
         <tbody>
@@ -18,45 +18,40 @@
             :key="comment.id"
           >
             <td>{{comment.id}}</td>
-            <td>{{comment.name}}</td>
-            <td>{{comment.email}}</td>
+            <td>{{comment.userId}}</td>
+            <td>{{comment.title}}</td>
           </tr>
         </tbody>
       </table>
-      <select v-model="pages" class="page-number">
-        <option>10</option>
-        <option>15</option>
-        <option>20</option>
-      </select>
+      <div>
+        Filter Comments:
+        <select @change="filterComments($event)">
+          <option value="100">100</option>
+          <option value="50">50</option>
+          <option value="20">20</option>
+          <option value="10">10</option>
+          <option value="5">5</option>
+        </select>
+      </div>
       <br>
-      <span>Selected: {{ pages }}</span>
     </div>
   </div>
 </template> 
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions , mapGetters} from 'vuex'
 export default {
   name: 'CommentsTable',
-  computed: {
-    ...mapGetters(['COMMENTS'])
-    // Other computed properties
-  },
-  data () {
-    return {
-      pages: '',
-      pageChange(pages) {
-        // API.get(`http://localhost:3000/comments?_page=2&_limit=${pages}`)
-        console.log(pages)
-      }
-    }
-  },
+  computed: mapGetters(["COMMENTS"]),
   methods: {
-    getPages() {
-      this.$store.dispatch('loadComments',pages)
-    }
+    ...mapActions(['filterComments'])
+    },
+    updated () {
+    console.log(this.COMMENTS)
   }
 }
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -64,5 +59,11 @@ export default {
   .page-number {
     border: 2px solid green;
   }
+
+  select {
+  margin-top: 20px;
+  padding: 6px;
+  border: #41b883 1px solid;
+}
 
 </style>
